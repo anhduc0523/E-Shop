@@ -59,7 +59,7 @@
         </div>
 
         <div class="form-group">
-          <label for="price" class="col-form-label">Price(NRS) <span class="text-danger">*</span></label>
+          <label for="price" class="col-form-label">Price(VND) <span class="text-danger">*</span></label>
           <input id="price" type="number" name="price" placeholder="Enter price"  value="{{old('price')}}" class="form-control">
           @error('price')
           <span class="text-danger">{{$message}}</span>
@@ -81,6 +81,17 @@
               <option value="M">Medium (M)</option>
               <option value="L">Large (L)</option>
               <option value="XL">Extra Large (XL)</option>
+              <option value="XXL">Extra Extra Large(XXL)</option>
+              <option value="35">35</option>
+              <option value="36">36</option>
+              <option value="37">37</option>
+              <option value="38">38</option>
+              <option value="39">39</option>
+              <option value="40">40</option>
+              <option value="41">41</option>
+              <option value="42">42</option>
+              <option value="43">43</option>
+              <option value="44">44</option>
           </select>
         </div>
 

@@ -93,7 +93,7 @@ class Helper{
     }
     // relationship cart with product
     public function product(){
-        return $this->hasOne('App\Models\Product','id','product_id');
+        return $this-> hasOne('App\Models\Product','id','product_id');
     }
 
     public static function getAllProductFromCart($user_id=''){

@@ -361,14 +361,14 @@
                                     <h2>CART  TOTALS</h2>
                                     <div class="content">
                                         <ul>
-										    <li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}">Cart Subtotal<span>${{number_format(Helper::totalCartPrice(),2)}}</span></li>
+										    <li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}">Cart Subtotal<span>{{number_format(Helper::totalCartPrice(),0, '', '.')}} VND</span></li>
                                             <li class="shipping">
                                                 Shipping Cost
                                                 @if(count(Helper::shipping())>0 && Helper::cartCount()>0)
                                                     <select name="shipping" class="nice-select">
-                                                        <option value="">Select your address</option>
+                                                        <option value="">Select shipping unit</option>
                                                         @foreach(Helper::shipping() as $shipping)
-                                                        <option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: ${{$shipping->price}}</option>
+                                                        <option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: {{number_format($shipping->price, 0, '', '.')}} VND</option>
                                                         @endforeach
                                                     </select>
                                                 @else 
@@ -377,7 +377,7 @@
                                             </li>
                                             
                                             @if(session('coupon'))
-                                            <li class="coupon_price" data-price="{{session('coupon')['value']}}">You Save<span>${{number_format(session('coupon')['value'],2)}}</span></li>
+                                            <li class="coupon_price" data-price="{{session('coupon')['value']}}">You Save<span>{{number_format(session('coupon')['value'],0, '', '.')}} VND</span></li>
                                             @endif
                                             @php
                                                 $total_amount=Helper::totalCartPrice();
@@ -386,9 +386,9 @@
                                                 }
                                             @endphp
                                             @if(session('coupon'))
-                                                <li class="last"  id="order_total_price">Total<span>${{number_format($total_amount,2)}}</span></li>
+                                                <li class="last"  id="order_total_price">Total<span>{{number_format($total_amount,0, '', '.')}} VND</span></li>
                                             @else
-                                                <li class="last"  id="order_total_price">Total<span>${{number_format($total_amount,2)}}</span></li>
+                                                <li class="last"  id="order_total_price">Total<span>{{number_format($total_amount,0, '', '.')}} VND</span></li>
                                             @endif
                                         </ul>
                                     </div>
@@ -571,8 +571,10 @@
 				let cost = parseFloat( $(this).find('option:selected').data('price') ) || 0;
 				let subtotal = parseFloat( $('.order_subtotal').data('price') ); 
 				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0; 
-				// alert(coupon);
-				$('#order_total_price span').text('$'+(subtotal + cost-coupon).toFixed(2));
+				
+                let formattedPrice = (subtotal + cost - coupon).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' VND';
+                $('#order_total_price span').text(formattedPrice);
+
 			});
 
 		});
