@@ -88,7 +88,7 @@
             @endforeach
           </tbody>
         </table>
-        <span style="float:right">{{$banners->links()}}</span>
+        <span class="svg-pagination" style="float:right">{{$banners->links()}}</span>
         @else
           <h6 class="text-center">No banners found!!! Please create banner</h6>
         @endif

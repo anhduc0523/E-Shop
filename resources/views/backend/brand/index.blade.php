@@ -79,7 +79,7 @@
             @endforeach
           </tbody>
         </table>
-        <span style="float:right">{{$brands->links()}}</span>
+        <span class="svg-pagination" style="float:right">{{$brands->links()}}</span>
         @else
           <h6 class="text-center">No brands found!!! Please create brand</h6>
         @endif

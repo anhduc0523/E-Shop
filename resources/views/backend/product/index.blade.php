@@ -109,7 +109,7 @@
             @endforeach
           </tbody>
         </table>
-        <span style="float:right">{{$products->links()}}</span>
+        <span class="svg-pagination" style="float:right">{{$products->links()}}</span>
         @else
           <h6 class="text-center">No Products found!!! Please create Product</h6>
         @endif

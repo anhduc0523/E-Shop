@@ -77,7 +77,7 @@
             @endforeach
           </tbody>
         </table>
-        <span style="float:right">{{$reviews->links()}}</span>
+        <span class="svg-pagination" style="float:right">{{$reviews->links()}}</span>
         @else
           <h6 class="text-center">No reviews found!!!</h6>
         @endif

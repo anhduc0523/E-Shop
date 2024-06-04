@@ -79,7 +79,7 @@
             @endforeach
           </tbody>
         </table>
-        <span style="float:right">{{$categories->links()}}</span>
+        <span class="svg-pagination" style="float:right">{{$categories->links()}}</span>
         @else
           <h6 class="text-center">No Categories found!!! Please create Category</h6>
         @endif
