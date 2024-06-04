@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Banner extends Model
 {
-    protected $fillable=[
+    protected $fillable = [
         'title',
         'slug',
         'description',
         'photo',
-        'status'
+        'status',
     ];
 }

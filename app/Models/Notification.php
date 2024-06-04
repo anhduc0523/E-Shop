@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notification extends Model
 {
-    protected $fillable=[
+    protected $fillable = [
         'data',
         'type',
         'notifiable',
-        'read_at'
+        'read_at',
     ];
 }
