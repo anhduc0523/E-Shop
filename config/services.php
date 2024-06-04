@@ -35,8 +35,8 @@ return [
         'redirect' => 'http://localhost:8000/login/github/callback',
      ],
      'google' => [
-        'client_id' => 'YOUR_GOOGLE_API', //Google API
-        'client_secret' => 'YOUR_GOOGLE_SECRET', //Google Secret
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => 'http://localhost:8000/login/google/callback',
      ],
      'facebook' => [

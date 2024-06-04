@@ -17,6 +17,7 @@ use DB;
 use Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+
 class FrontendController extends Controller
 {
    
@@ -28,10 +29,9 @@ class FrontendController extends Controller
         $featured=Product::where('status','active')->where('is_featured',1)->orderBy('price','DESC')->limit(2)->get();
         $posts=Post::where('status','active')->orderBy('id','DESC')->limit(3)->get();
         $banners=Banner::where('status','active')->limit(3)->orderBy('id','DESC')->get();
-        // return $banner;
         $products=Product::where('status','active')->orderBy('id','DESC')->limit(8)->get();
         $category=Category::where('status','active')->where('is_parent',1)->orderBy('title','ASC')->get();
-        // return $category;
+        
         return view('frontend.index')
                 ->with('featured',$featured)
                 ->with('posts',$posts)
@@ -59,18 +59,17 @@ class FrontendController extends Controller
         
         if(!empty($_GET['category'])){
             $slug=explode(',',$_GET['category']);
-            // dd($slug);
             $cat_ids=Category::select('id')->whereIn('slug',$slug)->pluck('id')->toArray();
-            // dd($cat_ids);
             $products->whereIn('cat_id',$cat_ids);
-            // return $products;
         }
+
         if(!empty($_GET['brand'])){
             $slugs=explode(',',$_GET['brand']);
             $brand_ids=Brand::select('id')->whereIn('slug',$slugs)->pluck('id')->toArray();
             return $brand_ids;
             $products->whereIn('brand_id',$brand_ids);
         }
+
         if(!empty($_GET['sortBy'])){
             if($_GET['sortBy']=='title'){
                 $products=$products->where('status','active')->orderBy('title','ASC');
@@ -102,6 +101,7 @@ class FrontendController extends Controller
       
         return view('frontend.pages.product-grids')->with('products',$products)->with('recent_products',$recent_products);
     }
+
     public function productLists(){
         $products=Product::query();
         
@@ -199,6 +199,7 @@ class FrontendController extends Controller
                 return redirect()->route('product-lists',$catURL.$brandURL.$priceRangeURL.$showURL.$sortByURL);
             }
     }
+
     public function productSearch(Request $request){
         $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
         $products=Product::orwhere('title','like','%'.$request->search.'%')
@@ -222,6 +223,7 @@ class FrontendController extends Controller
         }
 
     }
+
     public function productCat(Request $request){
         $products=Category::getProductByCat($request->slug);
         // return $request->slug;
@@ -235,6 +237,7 @@ class FrontendController extends Controller
         }
 
     }
+    
     public function productSubCat(Request $request){
         $products=Category::getProductBySubCat($request->sub_slug);
         // return $products;
@@ -385,7 +388,7 @@ class FrontendController extends Controller
         Session::put('user',$data['email']);
         if($check){
             request()->session()->flash('success','Successfully registered');
-            return redirect()->route('home');
+            return redirect()->route('login.form');
         }
         else{
             request()->session()->flash('error','Please try again!');
