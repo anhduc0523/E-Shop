@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
+use App\Models\Order\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\ExpressCheckout;

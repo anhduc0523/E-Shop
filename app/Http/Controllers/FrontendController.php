@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
-use App\Models\Brand;
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\PostCategory;
-use App\Models\PostTag;
-use App\Models\Product;
+use App\Models\Product\Brand;
+use App\Models\Product\Category;
+use App\Models\Post\Post;
+use App\Models\Post\PostCategory;
+use App\Models\Post\PostTag;
+use App\Models\Product\Product;
 use App\User;
-use Auth;
-use Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Newsletter;
 use Session;

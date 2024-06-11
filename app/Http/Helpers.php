@@ -1,12 +1,12 @@
 <?php
-use App\Models\Cart;
-use App\Models\Category;
+use App\Models\Order\Cart;
+use App\Models\Product\Category;
 use App\Models\Message;
-use App\Models\Order;
-use App\Models\PostCategory;
-use App\Models\PostTag;
-use App\Models\Shipping;
-use App\Models\Wishlist;
+use App\Models\Order\Order;
+use App\Models\Post\PostCategory;
+use App\Models\Post\PostTag;
+use App\Models\Order\Shipping;
+use App\Models\Order\Wishlist;
 
 // use Auth;
 class Helper
@@ -32,7 +32,7 @@ class Helper
 
         if ($menu) {
             ?>
-            
+
             <li>
             <a href="javascript:void(0);">Category<i class="ti-angle-down"></i></a>
                 <ul class="dropdown border-0 shadow">

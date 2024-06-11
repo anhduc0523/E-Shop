@@ -34,7 +34,7 @@
                                     <ul class="categor-list">
 										@php
 											// $category = new Category();
-											$menu=App\Models\Category::getAllParentWithChild();
+											$menu=App\Models\Product\Category::getAllParentWithChild();
 										@endphp
 										@if($menu)
 										<li>

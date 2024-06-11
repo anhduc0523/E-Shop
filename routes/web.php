@@ -1,18 +1,27 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CouponController;
+use App\Http\Controllers\Order\CartController;
+use App\Http\Controllers\Order\CouponController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Order\ShippingController;
+use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\PayPalController;
-use App\Http\Controllers\PostCommentController;
-use App\Http\Controllers\ProductReviewController;
-use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\Post\PostCategoryController;
+use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Post\PostTagController;
+use App\Http\Controllers\Post\PostCommentController;
+use App\Http\Controllers\Product\BrandController;
+use App\Http\Controllers\Product\CategoryController;
+use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Product\ProductReviewController;
+use App\Http\Controllers\Order\WishlistController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use UniSharp\LaravelFilemanager\Lfm;
@@ -103,12 +112,12 @@ Route::get('blog-tag/{slug}', [FrontendController::class, 'blogByTag'])->name('b
 Route::post('/subscribe', [FrontendController::class, 'subscribe'])->name('subscribe');
 
 // Product Review
-Route::resource('/review', 'ProductReviewController');
+Route::resource('/review', ProductReviewController::class);
 Route::post('product/{slug}/review', [ProductReviewController::class, 'store'])->name('review.store');
 
 // Post Comment
 Route::post('post/{slug}/comment', [PostCommentController::class, 'store'])->name('post-comment.store');
-Route::resource('/comment', 'PostCommentController');
+Route::resource('/comment', PostCommentController::class);
 // Coupon
 Route::post('/coupon-store', [CouponController::class, 'couponStore'])->name('coupon-store');
 // Payment
@@ -124,36 +133,36 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function
         return view('backend.layouts.file-manager');
     })->name('file-manager');
     // user route
-    Route::resource('users', 'UsersController');
+    Route::resource('users', UsersController::class);
     // Banner
-    Route::resource('banner', 'BannerController');
+    Route::resource('banner', BannerController::class);
     // Brand
-    Route::resource('brand', 'BrandController');
+    Route::resource('brand', BrandController::class);
     // Profile
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin-profile');
     Route::post('/profile/{id}', [AdminController::class, 'profileUpdate'])->name('profile-update');
     // Category
-    Route::resource('/category', 'CategoryController');
+    Route::resource('/category', CategoryController::class);
     // Product
-    Route::resource('/product', 'ProductController');
+    Route::resource('/product', ProductController::class);
     // Ajax for sub category
     Route::post('/category/{id}/child', 'CategoryController@getChildByParent');
     // POST category
-    Route::resource('/post-category', 'PostCategoryController');
+    Route::resource('/post-category', PostCategoryController::class);
     // Post tag
-    Route::resource('/post-tag', 'PostTagController');
+    Route::resource('/post-tag', PostTagController::class);
     // Post
-    Route::resource('/post', 'PostController');
+    Route::resource('/post', PostController::class);
     // Message
-    Route::resource('/message', 'MessageController');
+    Route::resource('/message', MessageController::class);
     Route::get('/message/five', [MessageController::class, 'messageFive'])->name('messages.five');
 
     // Order
-    Route::resource('/order', 'OrderController');
+    Route::resource('/order', OrderController::class);
     // Shipping
-    Route::resource('/shipping', 'ShippingController');
+    Route::resource('/shipping', ShippingController::class);
     // Coupon
-    Route::resource('/coupon', 'CouponController');
+    Route::resource('/coupon', CouponController::class);
     // Settings
     Route::get('settings', [AdminController::class, 'settings'])->name('settings');
     Route::post('setting/update', [AdminController::class, 'settingsUpdate'])->name('settings.update');

@@ -26,7 +26,6 @@ class AdminController extends Controller
             $array[++$key] = [$value->day_name, $value->count];
         }
 
-        //  return $data;
         return view('backend.index')->with('users', json_encode($array));
     }
 
@@ -34,13 +33,11 @@ class AdminController extends Controller
     {
         $profile = Auth()->user();
 
-        // return $profile;
         return view('backend.users.profile')->with('profile', $profile);
     }
 
     public function profileUpdate(Request $request, $id)
     {
-        // return $request->all();
         $user = User::findOrFail($id);
         $data = $request->all();
         $status = $user->fill($data)->save();
@@ -62,7 +59,6 @@ class AdminController extends Controller
 
     public function settingsUpdate(Request $request)
     {
-        // return $request->all();
         $this->validate($request, [
             'short_des' => 'required|string',
             'description' => 'required|string',
@@ -73,9 +69,7 @@ class AdminController extends Controller
             'phone' => 'required|string',
         ]);
         $data = $request->all();
-        // return $data;
         $settings = Settings::first();
-        // return $settings;
         $status = $settings->fill($data)->save();
         if ($status) {
             request()->session()->flash('success', 'Setting successfully updated');

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\PostComment;
-use App\Models\ProductReview;
+use App\Models\Order\Order;
+use App\Models\Post\PostComment;
+use App\Models\Product\ProductReview;
 use App\Rules\MatchOldPassword;
 use App\User;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
