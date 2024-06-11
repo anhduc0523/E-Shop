@@ -52,7 +52,7 @@
                           <span class="badge badge-warning">{{$comment->status}}</span>
                         @endif
                     </td>
-                    <td>
+                    <td class="d-flex">
                         <a href="{{route('user.post-comment.edit',$comment->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                         <form method="POST" action="{{route('user.post-comment.delete',[$comment->id])}}">
                           @csrf

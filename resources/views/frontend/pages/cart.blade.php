@@ -130,7 +130,7 @@
 										@php
 											$total_amount=Helper::totalCartPrice();
 											if(session()->has('coupon')){
-												$total_amount=$total_amount-Session::get('coupon')['value'];
+												$total_amount=$total_amount-\Illuminate\Support\Facades\Session::get('coupon')['value'];
 											}
 										@endphp
 										@if(session()->has('coupon'))

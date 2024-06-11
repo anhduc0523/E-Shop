@@ -74,7 +74,7 @@
 												</div>
 											</div> --}}
 											@php
-												$max=DB::table('products')->max('price');
+												$max= \Illuminate\Support\Facades\DB::table('products')->max('price');
 												// dd($max);
 											@endphp
 											<div id="slider-range" data-min="0" data-max="{{$max}}"></div>
@@ -131,7 +131,7 @@
                                     <h3 class="title">Brands</h3>
                                     <ul class="categor-list">
                                         @php
-                                            $brands=DB::table('brands')->orderBy('title','ASC')->where('status','active')->get();
+                                            $brands= \Illuminate\Support\Facades\DB::table('brands')->orderBy('title','ASC')->where('status','active')->get();
                                         @endphp
                                         @foreach($brands as $brand)
                                             <li><a href="{{route('product-brand',$brand->slug)}}">{{$brand->title}}</a></li>
@@ -281,8 +281,8 @@
 															<i class="yellow fa fa-star"></i>
 															<i class="fa fa-star"></i> --}}
 															@php
-																$rate=DB::table('product_reviews')->where('product_id',$product->id)->avg('rate');
-																$rate_count=DB::table('product_reviews')->where('product_id',$product->id)->count();
+																$rate= \Illuminate\Support\Facades\DB::table('product_reviews')->where('product_id',$product->id)->avg('rate');
+																$rate_count= \Illuminate\Support\Facades\DB::table('product_reviews')->where('product_id',$product->id)->count();
 															@endphp
 															@for($i=1; $i<=5; $i++)
 																@if($rate>=$i)

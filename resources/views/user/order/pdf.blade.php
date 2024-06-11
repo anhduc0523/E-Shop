@@ -7,7 +7,7 @@
 <body>
 
 @if($order)
-<style type="text/css">
+<style>
   .invoice-header {
     background: #f7f7f7;
     padding: 10px 20px 10px 20px;
@@ -119,8 +119,8 @@
       </thead>
       <tbody>
       @foreach($order->cart_info as $cart)
-      @php 
-        $product=DB::table('products')->select('title')->where('id',$cart->product_id)->get();
+      @php
+        $product= \Illuminate\Support\Facades\DB::table('products')->select('title')->where('id',$cart->product_id)->get();
       @endphp
         <tr>
           <td><span>

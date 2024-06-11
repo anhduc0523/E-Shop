@@ -2,6 +2,7 @@
 
 namespace App\Models\Post;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class PostComment extends Model
@@ -10,7 +11,7 @@ class PostComment extends Model
 
     public function user_info()
     {
-        return $this->hasOne('App\User', 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     public static function getAllComments()
