@@ -58,7 +58,9 @@
           <label for="child_cat_id">Sub Category</label>
           <select name="child_cat_id" id="child_cat_id" class="form-control">
               <option value="">--Select any sub category--</option>
-
+{{--              @foreach($parent_cats as $key=>$parent_cat)--}}
+{{--                  <option value='{{$parent_cat->id}}'>{{$parent_cat->title}}</option>--}}
+{{--              @endforeach--}}
           </select>
         </div>
 
@@ -90,6 +92,21 @@
               <option value="M"  @if( in_array( "M",$data ) ) selected @endif>Medium</option>
               <option value="L"  @if( in_array( "L",$data ) ) selected @endif>Large</option>
               <option value="XL"  @if( in_array( "XL",$data ) ) selected @endif>Extra Large</option>
+              <option value="XXL"  @if( in_array( "XXL",$data ) ) selected @endif>Extra Extra Large</option>
+              <option value="4"  @if( in_array( "4",$data ) ) selected @endif>4</option>
+              <option value="5"  @if( in_array( "5",$data ) ) selected @endif>5</option>
+              <option value="6"  @if( in_array( "6",$data ) ) selected @endif>6</option>
+              <option value="7"  @if( in_array( "7",$data ) ) selected @endif>7</option>
+              <option value="35"  @if( in_array( "4",$data ) ) selected @endif>35</option>
+              <option value="36"  @if( in_array( "5",$data ) ) selected @endif>36</option>
+              <option value="37"  @if( in_array( "7",$data ) ) selected @endif>37</option>
+              <option value="38"  @if( in_array( "4",$data ) ) selected @endif>38</option>
+              <option value="39"  @if( in_array( "5",$data ) ) selected @endif>39</option>
+              <option value="40"  @if( in_array( "6",$data ) ) selected @endif>40</option>
+              <option value="41"  @if( in_array( "7",$data ) ) selected @endif>41</option>
+              <option value="42"  @if( in_array( "4",$data ) ) selected @endif>42</option>
+              <option value="43"  @if( in_array( "5",$data ) ) selected @endif>43</option>
+              <option value="44"  @if( in_array( "6",$data ) ) selected @endif>44</option>
               @endforeach
           </select>
         </div>

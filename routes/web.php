@@ -146,7 +146,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function
     // Product
     Route::resource('/product', ProductController::class);
     // Ajax for sub category
-    Route::post('/category/{id}/child', 'CategoryController@getChildByParent');
+    Route::post('/category/{id}/child', [CategoryController::class, 'getChildByParent']);
     // POST category
     Route::resource('/post-category', PostCategoryController::class);
     // Post tag
@@ -183,8 +183,8 @@ Route::group(['prefix' => '/user', 'middleware' => ['user']], function () {
     Route::get('/profile', [HomeController::class, 'profile'])->name('user-profile');
     Route::post('/profile/{id}', [HomeController::class, 'profileUpdate'])->name('user-profile-update');
     //  Order
-    Route::get('/order', 'HomeController@orderIndex')->name('user.order.index');
-    Route::get('/order/show/{id}', 'HomeController@orderShow')->name('user.order.show');
+    Route::get('/order', [HomeController::class, 'orderIndex'])->name('user.order.index');
+    Route::get('/order/show/{id}', [HomeController::class, 'orderShow'])->name('user.order.show');
     Route::delete('/order/delete/{id}', [HomeController::class, 'userOrderDelete'])->name('user.order.delete');
     // Product Review
     Route::get('/user-review', [HomeController::class, 'productReviewIndex'])->name('user.productreview.index');

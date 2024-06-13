@@ -34,7 +34,7 @@
 
         <div class="form-group">
           <label for="is_featured">Is Featured</label><br>
-          <input type="checkbox" name='is_featured' id='is_featured' value='1' checked> Yes                        
+          <input type="checkbox" name='is_featured' id='is_featured' value='1' checked> Yes
         </div>
               {{-- {{$categories}} --}}
 
@@ -52,9 +52,9 @@
           <label for="child_cat_id">Sub Category</label>
           <select name="child_cat_id" id="child_cat_id" class="form-control">
               <option value="">--Select any category--</option>
-              {{-- @foreach($parent_cats as $key=>$parent_cat)
-                  <option value='{{$parent_cat->id}}'>{{$parent_cat->title}}</option>
-              @endforeach --}}
+{{--              @foreach($parent_cats as $key=>$parent_cat)--}}
+{{--                  <option value='{{$parent_cat->id}}'>{{$parent_cat->title}}</option>--}}
+{{--              @endforeach--}}
           </select>
         </div>
 
@@ -82,6 +82,10 @@
               <option value="L">Large (L)</option>
               <option value="XL">Extra Large (XL)</option>
               <option value="XXL">Extra Extra Large(XXL)</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
               <option value="35">35</option>
               <option value="36">36</option>
               <option value="37">37</option>
@@ -139,7 +143,7 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
-        
+
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">

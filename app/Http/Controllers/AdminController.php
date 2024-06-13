@@ -6,7 +6,7 @@ use App\Models\Settings;
 use App\Rules\MatchOldPassword;
 use App\User;
 use Carbon\Carbon;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;

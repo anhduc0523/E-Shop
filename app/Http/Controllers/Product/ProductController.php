@@ -34,7 +34,6 @@ class ProductController extends Controller
         $brand = Brand::get();
         $category = Category::where('is_parent', 1)->get();
 
-        // return $category;
         return view('backend.product.create')->with('categories', $category)->with('brands', $brand);
     }
 
