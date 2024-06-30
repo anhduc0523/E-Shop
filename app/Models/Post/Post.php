@@ -36,7 +36,7 @@ class Post extends Model
         return $this->hasOne(User::class, 'id', 'added_by');
     }
 
-    public static function getAllPost()
+    public static function  getAllPost()
     {
         return Post::with(['cat_info', 'author_info'])->orderBy('id', 'DESC')->paginate(10);
     }

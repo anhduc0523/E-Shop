@@ -12,11 +12,6 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $posts = Post::getAllPost();
@@ -25,11 +20,6 @@ class PostController extends Controller
         return view('backend.post.index')->with('posts', $posts);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $categories = PostCategory::get();
@@ -39,14 +29,8 @@ class PostController extends Controller
         return view('backend.post.create')->with('users', $users)->with('categories', $categories)->with('tags', $tags);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        // return $request->all();
         $this->validate($request, [
             'title' => 'string|required',
             'quote' => 'string|nullable',
@@ -74,7 +58,6 @@ class PostController extends Controller
         } else {
             $data['tags'] = '';
         }
-        // return $data;
 
         $status = Post::create($data);
         if ($status) {
@@ -86,23 +69,11 @@ class PostController extends Controller
         return redirect()->route('post.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $post = Post::findOrFail($id);
@@ -113,16 +84,9 @@ class PostController extends Controller
         return view('backend.post.edit')->with('categories', $categories)->with('users', $users)->with('tags', $tags)->with('post', $post);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $post = Post::findOrFail($id);
-        // return $request->all();
         $this->validate($request, [
             'title' => 'string|required',
             'quote' => 'string|nullable',
@@ -137,13 +101,11 @@ class PostController extends Controller
 
         $data = $request->all();
         $tags = $request->input('tags');
-        // return $tags;
         if ($tags) {
             $data['tags'] = implode(',', $tags);
         } else {
             $data['tags'] = '';
         }
-        // return $data;
 
         $status = $post->fill($data)->save();
         if ($status) {
@@ -155,12 +117,6 @@ class PostController extends Controller
         return redirect()->route('post.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $post = Post::findOrFail($id);

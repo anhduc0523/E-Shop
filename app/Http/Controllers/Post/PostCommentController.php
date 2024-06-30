@@ -12,11 +12,6 @@ use Notification;
 
 class PostCommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $comments = PostComment::getAllComments();
@@ -24,31 +19,17 @@ class PostCommentController extends Controller
         return view('backend.comment.index')->with('comments', $comments);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        // return $request->all();
         $post_info = Post::getPostBySlug($request->slug);
-        // return $post_info;
         $data = $request->all();
         $data['user_id'] = $request->user()->id;
-        // $data['post_id']=$post_info->id;
         $data['status'] = 'active';
-        // return $data;
         $status = PostComment::create($data);
         $user = User::where('role', 'admin')->get();
         $details = [
@@ -66,23 +47,11 @@ class PostCommentController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $comments = PostComment::find($id);
@@ -95,18 +64,11 @@ class PostCommentController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $comment = PostComment::find($id);
         if ($comment) {
             $data = $request->all();
-            // return $data;
             $status = $comment->fill($data)->update();
             if ($status) {
                 request()->session()->flash('success', 'Comment successfully updated');
@@ -122,12 +84,6 @@ class PostCommentController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $comment = PostComment::find($id);

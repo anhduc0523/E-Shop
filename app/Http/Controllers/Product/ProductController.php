@@ -11,11 +11,6 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $products = Product::getAllProduct();
@@ -24,11 +19,6 @@ class ProductController extends Controller
         return view('backend.product.index')->with('products', $products);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $brand = Brand::get();
@@ -37,11 +27,6 @@ class ProductController extends Controller
         return view('backend.product.create')->with('categories', $category)->with('brands', $brand);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // return $request->all();
@@ -76,8 +61,6 @@ class ProductController extends Controller
         } else {
             $data['size'] = '';
         }
-        // return $size;
-        // return $data;
         $status = Product::create($data);
         if ($status) {
             request()->session()->flash('success', 'Product Successfully added');
@@ -88,23 +71,11 @@ class ProductController extends Controller
         return redirect()->route('product.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $brand = Brand::get();
@@ -118,12 +89,6 @@ class ProductController extends Controller
             ->with('categories', $category)->with('items', $items);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
@@ -163,12 +128,6 @@ class ProductController extends Controller
         return redirect()->route('product.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
