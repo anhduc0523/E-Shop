@@ -12,6 +12,7 @@ class Cart extends Model
         'product_id',
         'order_id',
         'quantity',
+        'size',
         'amount',
         'price',
         'status',

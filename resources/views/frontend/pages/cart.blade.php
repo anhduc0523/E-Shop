@@ -31,6 +31,7 @@
 								<th>NAME</th>
 								<th class="text-center">UNIT PRICE</th>
 								<th class="text-center">QUANTITY</th>
+                                <th class="text-center">SIZE</th>
 								<th class="text-center">TOTAL</th>
 								<th class="text-center"><i class="ti-trash remove-icon"></i></th>
 							</tr>
@@ -43,8 +44,9 @@
 										<tr>
 											@php
 											$photo=explode(',',$cart->product['photo']);
+                                            $sizes=explode(',',$cart->product->size);
 											@endphp
-											<td class="image" data-title="No"><img src="{{$photo[0]}}" alt="{{$photo[0]}}"></td>
+											<td class="image img-fluid" data-title="No"><img style="min-width: 100px" src="{{$photo[0]}}" alt="{{$photo[0]}}"></td>
 											<td class="product-des" data-title="Description">
 												<p class="product-name"><a href="{{route('product-detail',$cart->product['slug'])}}" target="_blank">{{$cart->product['title']}}</a></p>
 												<p class="product-des">{!!($cart['summary']) !!}</p>
@@ -67,6 +69,16 @@
 												</div>
 												<!--/ End Input Order -->
 											</td>
+                                            <td class="size align-items-center" data-title="Size">
+                                                <div class="input-group">
+                                                    <select class="mb-0 form-select-custom" name="size[{{$key}}]">
+                                                        <option value="">SELECTED SIZE</option>
+                                                        @foreach($sizes as $size)
+                                                            <option value="{{$size}}" {{ $size == $cart->size ? 'selected' : '' }}>{{$size}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
 											<td class="total-amount cart_single_price" data-title="Total"><span class="money">{{number_format($cart['amount'],0, '', '.')}} VND</span></td>
 
 											<td class="action" data-title="Remove"><a href="{{route('cart-delete',$cart->id)}}"><i class="ti-trash remove-icon"></i></a></td>
@@ -78,6 +90,7 @@
 										<td></td>
 										<td></td>
 										<td></td>
+                                        <td></td>
 										<td class="float-right">
 											<button class="btn float-right" type="submit">Update</button>
 										</td>

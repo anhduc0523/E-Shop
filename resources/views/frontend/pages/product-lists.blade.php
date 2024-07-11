@@ -309,40 +309,44 @@
 												<div class="quickview-peragraph">
 													<p>{!! html_entity_decode($product->summary) !!}</p>
 												</div>
-												@if($product->size)
-													<div class="size">
-														<h4>Size</h4>
-														<ul>
-															@php
-																$sizes=explode(',',$product->size);
-																// dd($sizes);
-															@endphp
-															@foreach($sizes as $size)
-															<li><a href="#" class="one">{{$size}}</a></li>
-															@endforeach
-														</ul>
-													</div>
-												@endif
+
 												<form action="{{route('single-add-to-cart')}}" method="POST">
 													@csrf
-													<div class="quantity">
-														<!-- Input Order -->
-														<div class="input-group">
-															<div class="button minus">
-																<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-																	<i class="ti-minus"></i>
-																</button>
-															</div>
-															<input type="hidden" name="slug" value="{{$product->slug}}">
-															<input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="1000" value="1">
-															<div class="button plus">
-																<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-																	<i class="ti-plus"></i>
-																</button>
-															</div>
-														</div>
-														<!--/ End Input Order -->
-													</div>
+                                                    <div class="d-flex w-100 align-items-center">
+                                                        <div class="quantity w-50">
+                                                            <!-- Input Order -->
+                                                            <div class="input-group">
+                                                                <div class="button minus">
+                                                                    <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                                        <i class="ti-minus"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <input type="hidden" name="slug" value="{{$product->slug}}">
+                                                                <input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="1000" value="1">
+                                                                <div class="button plus">
+                                                                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+                                                                        <i class="ti-plus"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <!--/ End Input Order -->
+                                                        </div>
+                                                        <div class="size w-50">
+                                                            <div class="input-group text-center align-items-center">
+                                                                <h5 class="title mr-2">Size</h5>
+                                                                <select name="size" class="form-control">
+                                                                    @php
+                                                                        $sizes=explode(',',$product->size);
+                                                                        // dd($sizes);
+                                                                    @endphp
+                                                                    @foreach($sizes as $size)
+                                                                        <option>{{$size}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
 													<div class="add-to-cart">
 														<button type="submit" class="btn">Add to cart</button>
 														<a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
